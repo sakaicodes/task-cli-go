@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/sakaicodes/tasktracker/models"
+	"github.com/sakaicodes/task-cli-go/models"
 )
 
 /*

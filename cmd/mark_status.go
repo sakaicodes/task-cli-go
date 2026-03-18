@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/sakaicodes/tasktracker/models"
+	"github.com/sakaicodes/task-cli-go/models"
 )
 
 var markOptions = []string{"To-Do", "In-Progress", "Done"}

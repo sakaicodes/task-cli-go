@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/sakaicodes/tasktracker/cmd"
+	"github.com/sakaicodes/task-cli-go/cmd"
 )
 
 func main() {
