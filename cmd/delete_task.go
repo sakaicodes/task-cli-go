@@ -1,4 +1,4 @@
 package cmd
 
-func DeleteTasks(args []string) {
+func DeleteTask(args []string) {
 }

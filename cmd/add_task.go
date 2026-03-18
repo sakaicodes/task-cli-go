@@ -9,12 +9,12 @@ import (
 )
 
 /*
-Add tasks to the task tracker. It accepts a title and an optional status (default is 0). It loads existing tasks, creates a new task, and saves it back to the file. If the title is not provided, it prints an error message and exits.
+Add tasks to the task tracker. It accepts a title and an optional status (default is ""). It loads existing tasks, creates a new task, and saves it back to the file. If the title is not provided, it prints an error message and exits.
 */
-func AddTasks(args []string) {
+func AddTask(args []string) {
 	fs := flag.NewFlagSet("add", flag.ExitOnError)
 	title := fs.String("title", "", "Title of the task")
-	status := fs.Int("status", 0, "Status of the task")
+	status := fs.String("status", "Unassigned", "Status of the task")
 	fs.Parse(args)
 
 	// Checks if title is provided

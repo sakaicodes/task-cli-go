@@ -11,12 +11,12 @@ import (
 type Task struct {
 	ID     int    `json:"id"`
 	Title  string `json:"title"`
-	Status int    `json:"status"`
+	Status string `json:"status"`
 }
 
 const filePath = "tasks.json"
 
-func CreateTask(tasks []Task, title string, status int) *Task {
+func CreateTask(tasks []Task, title string, status string) *Task {
 	task := Task{
 		ID:     nextID(tasks),
 		Title:  title,
@@ -59,7 +59,7 @@ func SaveTasks(tasks []Task) error {
 func DisplayTasks(tasks []Task) {
 	data := [][]string{}
 	for _, task := range tasks {
-		data = append(data, []string{strconv.Itoa(task.ID), task.Title, strconv.Itoa(task.Status)})
+		data = append(data, []string{strconv.Itoa(task.ID), task.Title, task.Status})
 	}
 	table := tablewriter.NewWriter(os.Stdout)
 	table.Header([]string{"ID", "Title", "Status"})
