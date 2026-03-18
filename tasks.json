@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "title": "Buy Groceries",
+    "title": "Do Laundry",
     "status": 0
   },
   {
     "id": 2,
-    "title": "Cut the Lawn",
+    "title": "Do Dishes",
     "status": 0
   }
 ]

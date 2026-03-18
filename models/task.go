@@ -3,6 +3,9 @@ package models
 import (
 	"encoding/json"
 	"os"
+	"strconv"
+
+	"github.com/olekukonko/tablewriter"
 )
 
 type Task struct {
@@ -51,4 +54,15 @@ func SaveTasks(tasks []Task) error {
 		return err
 	}
 	return os.WriteFile(filePath, data, 0644) // 0644 is the file permission
+}
+
+func DisplayTasks(tasks []Task) {
+	data := [][]string{}
+	for _, task := range tasks {
+		data = append(data, []string{strconv.Itoa(task.ID), task.Title, strconv.Itoa(task.Status)})
+	}
+	table := tablewriter.NewWriter(os.Stdout)
+	table.Header([]string{"ID", "Title", "Status"})
+	table.Bulk(data)
+	table.Render()
 }

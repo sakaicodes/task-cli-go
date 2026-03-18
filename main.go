@@ -16,6 +16,12 @@ func main() {
 	switch os.Args[1] {
 	case "add":
 		cmd.AddTasks(os.Args[2:])
+	case "list":
+		cmd.ListTasks()
+	case "update":
+		cmd.UpdateTasks(os.Args[2:])
+	case "delete":
+		cmd.DeleteTasks(os.Args[2:])
 	default:
 		fmt.Println("error: unknown command")
 		os.Exit(1)
