@@ -7,11 +7,12 @@ This project lets you create, view, update, mark, and delete tasks directly from
 ## Features
 
 - Add a task with a title and optional status
-- List all tasks in a table format
+- List all tasks in a table format (ID, title, status, created time, last updated time)
 - Update a task title by ID
 - Mark task status by ID
 - Delete a task by ID
 - Persist tasks in `tasks.json`
+- Track `created_at` and `last_updated` timestamps for each task
 
 ## Project Structure
 
@@ -57,7 +58,13 @@ go run . add --title "Finish report" --status "To-Do"
 
 ### List tasks
 
-Shows all tasks in a table.
+Shows all tasks in a table with these columns:
+
+- ID
+- Title
+- Status
+- Created At
+- Last Updated
 
 ```bash
 go run . list
@@ -79,6 +86,7 @@ Updates the status of an existing task by ID.
 
 - Required: `--id`, `--status`
 - Valid statuses: `To-Do`, `In-Progress`, `Done`
+- The command normalizes casing before validation (for example, `done` becomes `Done`)
 
 ```bash
 go run . mark --id 1 --status "Done"
@@ -106,9 +114,16 @@ Example task record:
 {
 	"id": 1,
 	"title": "Buy groceries",
-	"status": "To-Do"
+	"status": "To-Do",
+	"created_at": "2026-03-18T09:00:00Z",
+	"last_updated": "2026-03-18T09:00:00Z"
 }
 ```
+
+Notes:
+
+- `created_at` is set when a task is first created.
+- `last_updated` is refreshed when you update a title or mark a new status.
 
 ## Error Behavior
 
