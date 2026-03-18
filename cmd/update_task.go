@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/sakaicodes/task-cli-go/models"
 )
@@ -41,6 +42,7 @@ func UpdateTask(args []string) {
 	for i, task := range tasks {
 		if task.ID == *id {
 			tasks[i].Title = *newDescription
+			tasks[i].LastUpdated = time.Now().Format(time.RFC3339)
 			err = models.SaveTasks(tasks)
 			if err != nil {
 				fmt.Println("error:", err)

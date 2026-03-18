@@ -4,23 +4,28 @@ import (
 	"encoding/json"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/olekukonko/tablewriter"
 )
 
 type Task struct {
-	ID     int    `json:"id"`
-	Title  string `json:"title"`
-	Status string `json:"status"`
+	ID          int    `json:"id"`
+	Title       string `json:"title"`
+	Status      string `json:"status"`
+	CreatedAt   string `json:"created_at"`
+	LastUpdated string `json:"last_updated"`
 }
 
 const filePath = "tasks.json"
 
 func CreateTask(tasks []Task, title string, status string) *Task {
 	task := Task{
-		ID:     nextID(tasks),
-		Title:  title,
-		Status: status,
+		ID:          nextID(tasks),
+		Title:       title,
+		Status:      status,
+		CreatedAt:   time.Now().Format(time.RFC3339),
+		LastUpdated: time.Now().Format(time.RFC3339),
 	}
 	return &task
 }
@@ -59,10 +64,10 @@ func SaveTasks(tasks []Task) error {
 func DisplayTasks(tasks []Task) {
 	data := [][]string{}
 	for _, task := range tasks {
-		data = append(data, []string{strconv.Itoa(task.ID), task.Title, task.Status})
+		data = append(data, []string{strconv.Itoa(task.ID), task.Title, task.Status, task.CreatedAt, task.LastUpdated})
 	}
 	table := tablewriter.NewWriter(os.Stdout)
-	table.Header([]string{"ID", "Title", "Status"})
+	table.Header([]string{"ID", "Title", "Status", "Created At", "Last Updated"})
 	table.Bulk(data)
 	table.Render()
 }
