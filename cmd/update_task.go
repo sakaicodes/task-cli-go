@@ -8,6 +8,9 @@ import (
 	"github.com/sakaicodes/tasktracker/models"
 )
 
+/*
+Updates the title of an existing task in the task tracker. It takes an ID and a new title as command-line arguments, checks if both are provided, and then loads existing tasks from the file. It iterates through the tasks to find the one with the specified ID, updates its title, and saves the updated task list back to the file. If the task with the specified ID is not found, it prints an error message.
+*/
 func UpdateTask(args []string) {
 	fs := flag.NewFlagSet("update", flag.ExitOnError)
 	id := fs.Int("id", 0, "ID of the task to update")

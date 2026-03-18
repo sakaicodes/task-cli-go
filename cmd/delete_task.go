@@ -9,6 +9,9 @@ import (
 	"github.com/sakaicodes/tasktracker/models"
 )
 
+/*
+Deletes a task from the task tracker. It takes an ID as a command-line argument, checks if the ID is provided, and then loads existing tasks from the file. It uses the slices.DeleteFunc function to create a new slice of tasks that excludes the task with the specified ID. If the length of the updated task list is the same as the original task list, it means that the task with the specified ID was not found, and an error message is printed. If the task is successfully deleted, the updated task list is saved back to the file, and a success message is printed.
+*/
 func DeleteTask(args []string) {
 	fs := flag.NewFlagSet("delete", flag.ExitOnError)
 	id := fs.Int("id", 0, "ID of the task to delete")
